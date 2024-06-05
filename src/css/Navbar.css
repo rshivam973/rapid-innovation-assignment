@@ -1,0 +1,58 @@
+/* src/css/Navbar.css */
+.navbar {
+  background-color: var(--navbar-bg);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Change to center */
+}
+
+.navbar-container {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  width: auto;
+}
+
+.navbar-toggler {
+  /* display: none;  */
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-link {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: var(--navbar-link-color);
+}
+
+.navbar-link.active {
+  background-color: var(--navbar-link-active-bg);
+  color: var(--navbar-link-active-color);
+}
+
+.social-icons .svg-inline--fa {
+  color: var(--navbar-link-color);
+}
+
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block; /* Show on smaller screens */
+  }
+  .navbar-menu {
+    display: none; /* Hide menu by default on smaller screens */
+  }
+  .navbar-menu.show {
+    display: block; /* Show menu when toggled */
+  }
+}

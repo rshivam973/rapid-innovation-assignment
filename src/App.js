@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+// src/App.js
+import React, { useEffect } from 'react';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import ContactUs from './pages/ContactUs';
+import { useSelector, useDispatch } from 'react-redux';
+import { setTheme } from './slices/themeSlice';
+import Footer from './components/Footer';
 
-function App() {
+const App = () => {
+  const theme = useSelector((state) => state.theme.theme);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+      dispatch(setTheme(storedTheme));
+    }
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`app ${theme}`}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home theme={theme} />} />
+          <Route path="/contact-us" element={<ContactUs theme={theme} />} />
+        </Routes>
+      </BrowserRouter>
+      <Footer theme={theme} />
     </div>
   );
-}
+};
 
 export default App;
